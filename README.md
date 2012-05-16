@@ -1,0 +1,4 @@
+tira
+====
+
+Tietorakenteiden harjoitustyö
