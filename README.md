@@ -1,4 +1,4 @@
 ﻿tira
 ====
 
-Tietorakenteiden harjoitustyö. Kesä 2012
+Tietorakenteiden harjoitustyö. Kesä 2012. 
