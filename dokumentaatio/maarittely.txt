@@ -7,24 +7,44 @@ TAPIO EEROLA
 DIJKSTRA/A*
 
 Harjoitustyön ongelmana on tutkia muutamaa erilaista algoritmia löytää suunnatussa painotetussa verkossa
-lyhin polku annetusta lähtösolmusta annettuun maalisolmuun.
+lyhin polku annetusta lähtösolmusta annettuun maalisolmuun. Painojen oletetaan olevan positiivisia.
 
 Dijkstran algoritmia käytetään etsimään lyhin polku annetusta alkusolmusta painotetun verkon kaikkiin muihin 
 solmuihin. Algoritmi etenee iteratiivisesti siten, että ensimmäisessä askeleessa lisätään karkeat etäisyysarviot 
 (lähtö etäisyyden 0 päässä ja muut "äärettömän" kaukana) ja jokaisella kierroksella arvioita parannetaan. 
 Jokaisella uudella iteraatiokierroksella edetään lähtöä lähimpänä olevaan vierailemattomaan solmuun ja korjaataan tämän
-solmun naapureiden etäisyysarvioita jos tarpeen. Samalla pidetään kirjaa, mikä solmu on kunkin solmun edeltäjä 
-lyhimmällä polulla. Algoritmi päättyy kun kaikissa solmuissa vierailtu tai ennalta-asetettu maalisolmu  on
-löydetty. Vierailemattomat solmut talletaan johonkin sopivaan ja mielellään tehokkaaseen tietorakenteeseen, 
-yleensä kekoon.
+solmun naapureiden etäisyysarvioita, jos tarpeen. Samalla pidetään kirjaa, mikä solmu on kunkin solmun edeltäjä 
+lyhimmällä polulla. Algoritmi päättyy, kun kaikissa solmuissa on vierailtu tai ennalta-asetettu maalisolmu  on
+löydetty. 
 
 A* algoritmilla voidaan pyrkiä parempaan tehokkuuteen, kun haetaan polkua lähdöstä johonkin
 ennalta kiinnitettyyn maalisolmuun. Hakua koitetaan ohjata "oikeaan suuntaan" jollain sopivasti valitulla
 heuristiikalla. Dijkstran algoritmihan etenee lähdöstä "kaikkiin suuntiin" ja aina vain lähimpänä olevaan 
 solmuun välittämättä siitä, että tämä saattaa viedä hakua poispäin tavoitesolmusta. Heuristiikka arvioi
-myös etäisyyttä maalista, kun valitaan seuraava tutkittavaa solmua. Dijkstran algoritmi on siis tavallaan
+myös etäisyyttä maalista valittaessa seuraavaa tutkittavaa solmua. Dijkstran algoritmi on siis tavallaan
 erikoistapaus A* algoritmista (unohdetaan arvio etäisyydestä maaliin ja huomioidaan vain matka
-lähdöstä).
+lähdöstä). Yleensä funktiota, joka kertoo etäisyyden lähdöstä, merkitään g:llä ja heuristiikkafunktiota
+h:lla. Seuraava tutkittava solmu A* ssä valitaan siis solmuksi v joka minimoi summan f(v) = g(v) + h(v). Jotta A*
+todella löytäisi LYHIMMÄN polun, on heuristiikkafunktion toteutettava ehto
+                
+      (*)  h(v) <= lyhin polku v:stä maaliin. 
+
+Ja siis jos h(v) = 0 kaikilla verkon solmuilla, saadaan Dijkstran algoritmi (ja ehto (*) toteutuu
+automaattisesti, sillä oletimme painojen olevan positiivisia).
+
+A* algoritmissa ylläpidetään jakoa kahdenlaisiin verkon solmuihin. Käsiteltyihin solmuihin ja 
+potentiaalisiin tutkinnan kohteisiin. Käytetään näistä nimityksiä SULJETTU ja AVOIN. Algoritmi
+on iteratiivinen ja se etenee siis silmukassa aina ottaen parhaan mahdollisen solmun joukosta
+AVOIN ja käsittelyn jälkeen siirtäen sen joukkoon SULJETTU. Jos tuo solmu on vaikkapa v, niin
+käsittelyvaiheessa käydään kaikki sen naapurit lävitse. Jos heuristiikka toteuttaa seuraavan ehdon
+
+      (**) h(x) <= w(x,y) + h(y) jokaiselle kaarelle (x,y)  (monotonisuus)
+
+suljettua naapuria ei koskaan tarvitse käsitellä uudelleen eikä suljettua naapuri koskaan
+siirry takaisin joukkoon AVOIN. Muille naapureille päivitetään f:n ja g:n arvot. Lyhimmän 
+polun konstruoimiseksi päivitetään myös tieto naapurien edeltäjästä lyhimmällä polulla.
+Algoritmin  tehokkaan toteuttamisen kannalta on tärkeää toteuttaa joukko AVOIN sopivana
+tietorakenteena. Tähän käytetään yleensä kekoa.
 
 
 
