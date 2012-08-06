@@ -1,6 +1,6 @@
-TIETORAKENTEIDEN HARJOITUSTY�, ELOKUU 2012
-HELSINGIN YLIOPISTO, TIETOJENK�SITTELYTIETEEN LAITOS
-M��RITTELYDOKUMENTTI
+TIETORAKENTEIDEN HARJOITUSTYÖ, ELOKUU 2012
+HELSINGIN YLIOPISTO, TIETOJENKÄSITTELYTIETEEN LAITOS
+MÄÄRITTELYDOKUMENTTI
 
 TAPIO EEROLA
 
@@ -19,7 +19,7 @@ yleensä kekoon.
 A* algoritmilla voidaan pyrkiä parempaan tehokkuuteen silloin, kun haetaan polkua  lähdöstä johonkin
 ennalta kiinnitettyyn maalisolmuun. Hakua koitetaan ohjata "oikeaan suuntaan" jollain sopivasti valitulla
 heuristiikalla. Dijkstran algoritmihan etenee lähdöstä "kaikkiin suuntiin" ja aina vain lähimpänä olevaan 
-solmuun välittämättä siitä, että tämä saattaa viedä hakua poispäin tavoitesolmusta.
+solmuun välittämättä siitä, että tämä saattaa viedä hakua poispäin tavoitesolmusta. 
 
 
 
