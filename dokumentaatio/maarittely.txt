@@ -1,8 +1,25 @@
-TIETORAKENTEIDEN HARJOITUSTY�, ELOKUU 2012
-HELSINGIN YLIOPISTO, TIETOJENK�SITTELYTIETEEN LAITOS
-M��RITTELYDOKUMENTTI
+TIETORAKENTEIDEN HARJOITUSTY�, ELOKUU 2012
+HELSINGIN YLIOPISTO, TIETOJENK�SITTELYTIETEEN LAITOS
+M��RITTELYDOKUMENTTI
 
 TAPIO EEROLA
+
+DIJKSTRA/A*
+
+Dijkstran algoritmia käytetään etsimään lyhin polku annetusta alkusolmusta painotetun verkon kaikkiin muihin 
+solmuihin(tai johonkin annettuun maalisolmuun). Algoritmi etenee iteratiivisesti siten, että ensimmäisessä 
+askeleessa lisätään karkeat etäisyysarviot  (lähtö 0 etäisyyden päässä ja muut "äärettömän" kaukana) ja 
+jokaisella kierroksella arvioita parannetaan. Solmut jaetaan kahteen joukkoon, "vierailtuihin" ja "vierailemattomiin".
+Jokaisella uudella iteraatiokierroksella edetään lähimpänä olevaan vierailemattomaan solmuun ja korjaataan tämän
+solmun naapureiden etäisyysarvioita jos tarpeen. Samalla pidetään kirjaa, mikä solmu on kunkin solmun edeltäjä 
+lyhimmällä polulla. Algoritmi päättyy kun kaikissa solmuissa vierailtu tai ennalta-asetettu maalisolmu  on
+löydetty. Viarailemattomia solmut talletaan johonkin sopivaan ja mielellään tehokkaaseen tietorakenteeseen, 
+yleensä kekoon.
+
+A* algoritmilla voidaan pyrkiä parempaan tehokkuuteen silloin, kun haetaan polkua  lähdöstä johonkin
+ennalta kiinnitettyyn maalisolmuun. Hakua koitetaan ohjata "oikeaan suuntaan" jollain sopivasti valitulla
+heuristiikalla. Dijkstran algoritmihan etenee lähdöstä "kaikkiin suuntiin" ja aina vain lähimpänä olevaan 
+solmuun välittämättä siitä, että tämä saattaa viedä hakua poispäin tavoitesolmusta.
 
 
 
