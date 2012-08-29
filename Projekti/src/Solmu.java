@@ -1,59 +1,77 @@
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 /**
  *
  * @author tapio eerola
  */
-public class Solmu implements Comparable<Solmu> {
+public class Solmu {
     
-    private int id;
-    private int dist;
-    private Solmu edellinen;
-    private List<Kaari> naapurit;
-
-    public Solmu(int id) {
-        this.id = id;
-        this.naapurit = new ArrayList<Kaari>();
-        this.dist = Integer.MAX_VALUE;
-        this.edellinen = null;
+    private final int x;
+    private final int y;
+    private boolean este;
+    private int g; //Arvio lyhimmästä polusta lähtöpisteeseen.
+    private int h; // Heuristiikan antama arvio matkasta maalipisteeseen.
+    private Solmu edeltaja; // Solmun edeltäjä lyhimmällä polulla.
+    private boolean path; //Kuuluuko solmu lyhimpään polkuun.
+    private int indeksi;
+    
+    public Solmu(int x, int y, boolean este) {
+        this.x = x;
+        this.y = y;
+        this.este = este;
+        this.g = Integer.MAX_VALUE;
+        this.h = Integer.MAX_VALUE;
+        this.edeltaja = null;
+        this.path = false;
     }
     
-    public int getId() {
-        return id;
+    public Solmu(int d) {
+        this.x = 0;
+        this.y = 0;
+        this.g = d;
+        this.edeltaja = null;
     }
     
-    public void lisaaNaapuri(Kaari e) {
-        this.naapurit.add(e);
+    public int getX() {
+        return x;
+    }
+    
+    public int getY() {
+        return y;
     }
     
     public int getDist() {
-        return dist;
+        return g;
     }
     
     public void setDist(int d) {
-        this.dist = d;
+        this.g = d;
     }
     
-    public void setEdellinen(Solmu s) {
-        this.edellinen = s;
+    public Solmu getEdeltaja(){
+        return edeltaja;
     }
     
-    public List<Kaari> getNaapurit() {
-        return naapurit;
+    public void setEdeltaja(Solmu e) {
+        this.edeltaja = e;
+    }
+    
+    public boolean onEste() {
+        return este;
+    }
+    
+    public void setPath(boolean path) {
+        this.path = path;
+    }
+    
+    public boolean getPath() {
+        return this.path;
+    }
+    
+    public void setEstimate(int h) {
+        this.h = h;
+    }
+    
+    public int getEstimate() {
+        return h;
     }
 
-    @Override
-    public int compareTo(Solmu o) {
-        return (this.dist - o.dist);
-    }
-    
-    
-    
-    
-    
-    
 }
